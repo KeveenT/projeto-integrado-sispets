@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require('cors');
 const bodyParser = require("body-parser");
 
+require('dotenv').config();
+
 const connectDB = require("./database");
 const animaisRoute = require("./routes/animaisRoute");
 
@@ -14,7 +16,7 @@ connectDB();
 
 app.use("/api", animaisRoute);
 
-PORT = 5000;
-app.listen(PORT, () => {
+//PORT = 5000;
+app.listen(process.env.PORT || 5000, () => {
     console.log(`Servidor está rodando na porta ${PORT}`)
 });
