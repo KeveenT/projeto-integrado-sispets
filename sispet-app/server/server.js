@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require('cors');
-const bodyParser = require("body-parser");
 
 require('dotenv').config();
 
@@ -18,5 +17,5 @@ app.use("/api", animaisRoute);
 
 //PORT = 5000;
 app.listen(process.env.PORT || 5000, () => {
-    console.log(`Servidor está rodando na porta ${PORT}`)
+    console.log("Servidor está rodando")
 });
