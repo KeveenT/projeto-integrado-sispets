@@ -1,0 +1,53 @@
+import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+
+const Lista = () => {
+    const [listaAnimais, setListaAnimais] = useState([]);
+
+    const deleteAnimal = (id) => {
+        axios.delete(`https://sispets.herokuapp.com/api/animal/delete/${id}`);
+        setListaAnimais(listaAnimais.filter(animal => animal._id !== id));
+    };
+    
+    useEffect(() => {
+        axios.get("https://sispets.herokuapp.com/api/animais").then((response) => {
+            setListaAnimais(response.data);
+        });
+    }, []);
+
+    return (
+        <div className="display-animais">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Espécie</th>
+                        <th>Idade</th>
+                        <th>Raça</th>
+                        <th>Sexo</th>
+                        <th>Cliente</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {listaAnimais.map((animal) => {
+                        return(
+                        <tr key={animal._id}>
+                            <td>{animal.nome}</td>
+                            <td>{animal.especie}</td>
+                            <td>{animal.idade}</td>
+                            <td>{animal.raça}</td>
+                            <td>{animal.sexo}</td>
+                            <td>{animal.cliente}</td>
+                            <td><button className="btn btn-danger" onClick={() => deleteAnimal(animal._id)}>Deletar</button></td>
+                        </tr>
+                        )
+                    }
+                    )}
+                </tbody>
+                </table>
+        </div>
+    );
+};
+
+export default Lista;
