@@ -29,6 +29,19 @@ const deleteAnimal = async (req, res) => {
     }
 };
 
+const updateAnimal = async (req, res) => {
+    const newAnimal = req.body;
+    const id = req.params.id;
+    try {
+        const updatedAnimal = await Animais.findByIdAndUpdate(id, newAnimal);
+        updatedAnimal.save();
+        res.json(updatedAnimal);
+    } catch (err) {
+        console.error(err.message);
+    }
+};
+
 exports.getAnimais = getAnimais;
 exports.createAnimal = createAnimal;
 exports.deleteAnimal = deleteAnimal;
+exports.updateAnimal = updateAnimal;

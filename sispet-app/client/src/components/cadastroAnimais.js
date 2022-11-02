@@ -4,8 +4,8 @@ import axios from "axios";
 
 const CadastroAnimal = () => {
     const [nomeAnimal, setNome] = useState("");
-    const [especieAnimal, setEspecie] = useState(0);
-    const [idadeAnimal, setIdade] = useState("");
+    const [especieAnimal, setEspecie] = useState("");
+    const [idadeAnimal, setIdade] = useState(0);
     const [raçaAnimal, setRaça] = useState("");
     const [sexoAnimal, setSexo] = useState("");
     const [clienteAnimal, setCliente] = useState("");

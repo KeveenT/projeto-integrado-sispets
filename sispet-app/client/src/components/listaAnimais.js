@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+
+import EditarAnimal from "./editarAnimais";
 
 const Lista = () => {
     const [listaAnimais, setListaAnimais] = useState([]);
@@ -26,7 +28,7 @@ const Lista = () => {
                         <th>Raça</th>
                         <th>Sexo</th>
                         <th>Cliente</th>
-                        <th>Ações</th>
+                        <th colSpan="2">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +41,7 @@ const Lista = () => {
                             <td>{animal.raça}</td>
                             <td>{animal.sexo}</td>
                             <td>{animal.cliente}</td>
+                            <td><EditarAnimal animal={animal}/></td>
                             <td><button className="btn btn-danger" onClick={() => deleteAnimal(animal._id)}>Deletar</button></td>
                         </tr>
                         )
