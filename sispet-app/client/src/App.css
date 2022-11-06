@@ -70,7 +70,13 @@ body {
 }
 
 .display-animais {
-    margin-top: 5rem;
+    margin-top: 7rem;
+    width: 800px;
+    height: auto;
+}
+
+.display-clientes {
+    margin-top: 7rem;
     width: 800px;
     height: auto;
 }
@@ -80,7 +86,7 @@ body {
 }
 
 .cadastro-modal {
-    margin-top: 5rem;
+    margin-top: 3rem;
     width: 200px;
     height: auto;
 }
@@ -101,4 +107,9 @@ input {
     width: 300px;
     height: 30px;
     margin: 5px;
+}
+
+.searchbar {
+    margin-top: 3rem;
+    width: 500px;
 }

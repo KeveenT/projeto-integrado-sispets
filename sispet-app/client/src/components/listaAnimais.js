@@ -28,7 +28,7 @@ const Lista = () => {
                         <th>Raça</th>
                         <th>Sexo</th>
                         <th>Cliente</th>
-                        <th colSpan="2">Ações</th>
+                        <th colspan="2" class="text-center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

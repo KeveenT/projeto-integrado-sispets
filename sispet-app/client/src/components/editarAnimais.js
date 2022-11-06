@@ -20,14 +20,15 @@ const EditarAnimal = ({ animal }) => {
             console.log("Animal Atualizado");
         });
     };
-
+    
+    //É necessário usar o id como id do modal para que os identificadores dos respectivos registros sejam utilizados
     return (
         <div className="update-modal">
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target={`#id${animal._id}`}>
                 Editar
             </button>
 
-            <div class="modal" id={`id${animal._id}`}>
+            <div class="modal" id={`id${animal._id}`}> 
             <div class="modal-dialog">
                 <div class="modal-content">
 
