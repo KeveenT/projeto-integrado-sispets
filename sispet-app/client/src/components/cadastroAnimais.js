@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import axios from "axios";
 
 const CadastroAnimal = () => {
+
+    const [listaClientes, setListaClientes] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/clientes").then((response) => {
+            setListaClientes(response.data);
+        });
+    }, []);
+
+    const optionClientes = listaClientes.flat().map(({nome})=> nome);
+
     const [nomeAnimal, setNome] = useState("");
     const [especieAnimal, setEspecie] = useState("");
     const [idadeAnimal, setIdade] = useState(0);
@@ -46,9 +57,18 @@ const CadastroAnimal = () => {
                     <label>Raça</label>
                     <input type="text" onChange={(event) => {setRaça(event.target.value)}}/>
                     <label>Sexo</label>
-                    <input type="text" onChange={(event) => {setSexo(event.target.value)}}/>
+                    <select class="form-select" id="sexo" onChange={(event) => {setSexo(event.target.value)}}>
+                        <option defaultValue> </option>
+                        <option value="Fêmea">Fêmea</option>
+                        <option value="Macho">Macho</option>
+                    </select>
                     <label>Cliente</label>
-                    <input type="text" onChange={(event) => {setCliente(event.target.value)}}/>
+                    <select class="form-select" id="cliente" value={clienteAnimal} onChange={(event) => {setCliente(event.target.value)}}>
+                        <option defaultValue> </option>
+                        {optionClientes.map((clienteAnimal, i) => {
+                            return <option key={i} value={clienteAnimal} onSelect={() => setCliente(clienteAnimal,i)}>{clienteAnimal}</option>
+                        })}
+                    </select>
                 </div>
 
                 <div class="modal-footer">

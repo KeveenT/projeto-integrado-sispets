@@ -2,7 +2,7 @@ const Animais = require("../models/animaisModel");
 
 const getAnimais = async (req, res) => {
     try {
-	    const animais = await Animais.find();
+	    const animais = await Animais.find().populate('cliente', 'nome');
 	    res.json(animais);
     } catch (err) {
         console.error(err.message);

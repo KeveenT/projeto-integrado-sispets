@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const clienteSchema = new Schema({
     nome: {
         type: String,
-        required: false,
+        required: true,
     },
     cpf: {
         type: Number,

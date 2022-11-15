@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const EditarAnimal = ({ animal }) => {
@@ -9,6 +9,16 @@ const EditarAnimal = ({ animal }) => {
     const [sexoAnimal, setSexo] = useState(animal.sexo);
     const [clienteAnimal, setCliente] = useState(animal.cliente);
     const [animalId] = useState(animal._id);
+
+    const [listaClientes, setListaClientes] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/clientes").then((response) => {
+            setListaClientes(response.data);
+        });
+    }, []);
+
+    const optionClientes = listaClientes.flat().map(({nome})=> nome);
 
     const updateAnimal = (id) => {
         axios.put(`http://localhost:5000/api/animal/update/${id}`, JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente: clienteAnimal, id: animalId}), {
@@ -47,9 +57,18 @@ const EditarAnimal = ({ animal }) => {
                     <label>Raça</label>
                     <input type="text" value={raçaAnimal} onChange={(event) => {setRaça(event.target.value)}}/>
                     <label>Sexo</label>
-                    <input type="text" value={sexoAnimal} onChange={(event) => {setSexo(event.target.value)}}/>
+                    <select class="form-select" id="sexo" value={sexoAnimal} onChange={(event) => {setSexo(event.target.value)}}>
+                        <option defaultValue>{sexoAnimal}</option>
+                        <option value="Fêmea">Fêmea</option>
+                        <option value="Macho">Macho</option>
+                    </select>
                     <label>Cliente</label>
-                    <input type="text" value={clienteAnimal} onChange={(event) => {setCliente(event.target.value)}}/>
+                    <select class="form-select" id="cliente" value={clienteAnimal} onChange={(event) => {setCliente(event.target.value)}}>
+                        <option defaultValue>{clienteAnimal}</option>
+                        {optionClientes.map((clienteAnimal, i) => {
+                            return <option key={i} value={clienteAnimal} onSelect={() => setCliente(clienteAnimal,i)}>{clienteAnimal}</option>
+                        })}
+                    </select>
                 </div>
 
                 <div class="modal-footer">

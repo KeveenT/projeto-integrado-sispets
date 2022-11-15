@@ -109,6 +109,13 @@ input {
     margin: 5px;
 }
 
+.form-select {
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+    outline: solid 1px grey;
+}
+
 .searchbar {
     margin-top: 3rem;
     width: 500px;
