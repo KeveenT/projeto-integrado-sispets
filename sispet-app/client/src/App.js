@@ -1,4 +1,4 @@
-import react, { Fragment } from 'react';
+import { Fragment } from 'react';
 import './App.css';
 
 //Components
@@ -9,6 +9,8 @@ import CadastroAnimal from './components/cadastroAnimais';
 import ListaAnimais from './components/listaAnimais';
 import CadastroCliente from './components/cadastroClientes';
 import ListaClientes from './components/listaClientes';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
   let component
@@ -17,8 +19,14 @@ function App() {
       component = [<CadastroAnimal />, <ListaAnimais />]
       break
     case "/clientes":
-        component = [<CadastroCliente />, <ListaClientes />]
-        break
+      component = [<CadastroCliente />, <ListaClientes />]
+      break
+    case "/signup":
+      component = [<Signup />]
+      break
+    case "/login":
+      component = [<Login />]
+      break
   };
   return (
     <Fragment>

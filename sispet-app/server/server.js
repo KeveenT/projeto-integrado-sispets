@@ -6,6 +6,7 @@ require('dotenv').config();
 const connectDB = require("./database");
 const animaisRoute = require("./routes/animaisRoute");
 const clientesRoute = require("./routes/clientesRoute");
+const usersRoute = require("./routes/usersRoute");
 
 const app = express();
 
@@ -16,6 +17,7 @@ connectDB();
 
 app.use("/api", animaisRoute);
 app.use("/api", clientesRoute);
+app.use("/api", usersRoute);
 
 //PORT = 5000;
 app.listen(process.env.PORT || 5000, () => {
