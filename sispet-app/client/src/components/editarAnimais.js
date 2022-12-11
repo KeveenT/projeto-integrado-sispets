@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const EditarAnimal = ({ animal }) => {
     const [nomeAnimal, setNome] = useState(animal.nome);
     const [especieAnimal, setEspecie] = useState(animal.especie);
@@ -12,19 +14,34 @@ const EditarAnimal = ({ animal }) => {
 
     const [listaClientes, setListaClientes] = useState([]);
 
+    const { user } = useAuthContext()
+
     useEffect(() => {
-        axios.get("http://localhost:5000/api/clientes").then((response) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.get("http://localhost:5000/api/clientes", {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+            }).then((response) => {
             setListaClientes(response.data);
         });
-    }, []);
+    }, [user]);
 
     const optionClientes = listaClientes.flat().map(({nome})=> nome);
 
     const updateAnimal = (id) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
         axios.put(`http://localhost:5000/api/animal/update/${id}`, JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente: clienteAnimal, id: animalId}), {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
           }).then((response) => {
             console.log("Animal Atualizado");

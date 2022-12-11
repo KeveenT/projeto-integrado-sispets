@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import EditarAnimal from "./editarAnimais";
 
 const Lista = () => {
     const [listaAnimais, setListaAnimais] = useState([]);
 
+    const { user } = useAuthContext()
+
     const deleteAnimal = (id) => {
-        axios.delete(`http://localhost:5000/api/animal/delete/${id}`);
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.delete(`http://localhost:5000/api/animal/delete/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        });
         setListaAnimais(listaAnimais.filter(animal => animal._id !== id));
     };
     
     useEffect(() => {
-        axios.get("http://localhost:5000/api/animais").then((response) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.get("http://localhost:5000/api/animais", {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        }).then((response) => {
             setListaAnimais(response.data);
         });
-    }, []);
+    }, [user]);
 
     return (
         <div className="display-animais">

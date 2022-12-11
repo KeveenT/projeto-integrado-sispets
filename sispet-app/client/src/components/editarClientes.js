@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const EditarCliente = ({ cliente }) => {
     const [nomeCliente, setNome] = useState(cliente.nome);
     const [cpfCliente, setCPF] = useState(cliente.cpf);
@@ -10,11 +12,18 @@ const EditarCliente = ({ cliente }) => {
     const [emailCliente, setEmail] = useState(cliente.email);
     const [clienteId] = useState(cliente._id);
 
+    const { user } = useAuthContext()
+
     const updateCliente = (id) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
         axios.put(`http://localhost:5000/api/cliente/update/${id}`, JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email: emailCliente, id: clienteId}), {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
           }).then((response) => {
             console.log("Cliente Atualizado");

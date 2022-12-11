@@ -1,21 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 import EditarCliente from "./editarClientes";
 
 const Lista = () => {
     const [listaClientes, setListaClientes] = useState([]);
 
+    const { user } = useAuthContext()
+
     const deleteCliente = (id) => {
-        axios.delete(`http://localhost:5000/api/cliente/delete/${id}`);
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.delete(`http://localhost:5000/api/cliente/delete/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        });
         setListaClientes(listaClientes.filter(cliente => cliente._id !== id));
     };
     
     useEffect(() => {
-        axios.get("http://localhost:5000/api/clientes").then((response) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.get("http://localhost:5000/api/clientes", {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        }).then((response) => {
             setListaClientes(response.data);
         });
-    }, []);
+    }, [user]);
 
     return (
         <div className="display-clientes">

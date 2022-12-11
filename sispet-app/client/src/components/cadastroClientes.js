@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import axios from "axios";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const CadastroCliente = () => {
     const [nomeCliente, setNome] = useState("");
     const [cpfCliente, setCPF] = useState(0);
@@ -10,11 +12,18 @@ const CadastroCliente = () => {
     const [telefoneCliente, setTelefone] = useState(0);
     const [emailCliente, setEmail] = useState("");
 
+    const { user } = useAuthContext()
+
     const createClienteNovo = async () => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
         await axios.post("http://localhost:5000/api/cliente/new", JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email:emailCliente}), {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
           }).then((response) => {
             console.log("Cliente Registrado");

@@ -2,15 +2,27 @@ import React, { useState, useEffect } from "react";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import axios from "axios";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const CadastroAnimal = () => {
 
     const [listaClientes, setListaClientes] = useState([]);
 
+    const { user } = useAuthContext()
+
     useEffect(() => {
-        axios.get("http://localhost:5000/api/clientes").then((response) => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.get("http://localhost:5000/api/clientes", {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+            }).then((response) => {
             setListaClientes(response.data);
         });
-    }, []);
+    }, [user]);
 
     const optionClientes = listaClientes.flat().map(({nome})=> nome);
 
@@ -22,10 +34,15 @@ const CadastroAnimal = () => {
     const [clienteAnimal, setCliente] = useState("");
 
     const createAnimalNovo = async () => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
         await axios.post("http://localhost:5000/api/animal/new", JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente:clienteAnimal}), {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
           }).then((response) => {
             console.log("Animal Registrado");
