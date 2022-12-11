@@ -1,8 +1,11 @@
 const Animais = require("../models/animaisModel");
+const mongoose = require("mongoose");
 
 const getAnimais = async (req, res) => {
+    //console.log(mongoose.isValidObjectId(req.params.id))
     try {
-	    const animais = await Animais.find().populate('cliente', 'nome');
+	    //const animais = await Animais.find().populate('cliente', 'nome');
+        const animais = await Animais.find();
 	    res.json(animais);
     } catch (err) {
         console.error(err.message);

@@ -15,9 +15,9 @@ app.use(cors());
 
 connectDB();
 
+app.use("/api", usersRoute);
 app.use("/api", animaisRoute);
 app.use("/api", clientesRoute);
-app.use("/api", usersRoute);
 
 //PORT = 5000;
 app.listen(process.env.PORT || 5000, () => {

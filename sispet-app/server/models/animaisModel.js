@@ -24,8 +24,9 @@ const animalSchema = new Schema({
         required: false,
     },
     cliente: {
-        type: mongoose.Schema.Types.String,
-        ref: "Clientes",
+        //type: mongoose.Schema.Types.String,
+        //ref: "Clientes",
+        type: String,
         required: false,
     }
 });

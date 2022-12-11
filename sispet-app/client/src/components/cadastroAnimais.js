@@ -22,7 +22,7 @@ const CadastroAnimal = () => {
     const [clienteAnimal, setCliente] = useState("");
 
     const createAnimalNovo = async () => {
-        await axios.post("https://sispets.herokuapp.com/api/animal/new", JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente:clienteAnimal}), {
+        await axios.post("http://localhost:5000/api/animal/new", JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente:clienteAnimal}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'

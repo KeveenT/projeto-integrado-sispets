@@ -7,12 +7,12 @@ const Lista = () => {
     const [listaAnimais, setListaAnimais] = useState([]);
 
     const deleteAnimal = (id) => {
-        axios.delete(`https://sispets.herokuapp.com/api/animal/delete/${id}`);
+        axios.delete(`http://localhost:5000/api/animal/delete/${id}`);
         setListaAnimais(listaAnimais.filter(animal => animal._id !== id));
     };
     
     useEffect(() => {
-        axios.get("https://sispets.herokuapp.com/api/animais").then((response) => {
+        axios.get("http://localhost:5000/api/animais").then((response) => {
             setListaAnimais(response.data);
         });
     }, []);
