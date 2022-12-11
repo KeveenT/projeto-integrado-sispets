@@ -27,6 +27,8 @@ function App() {
     case "/login":
       component = [<Login />]
       break
+    default:
+      component = []
   };
   return (
     <Fragment>
