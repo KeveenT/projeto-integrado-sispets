@@ -159,3 +159,15 @@ form.signup, form.login {
     background: #fff;
     border-radius: 4px;
 }
+
+.agendamento {
+    margin-top: 3rem;
+    width: 200px;
+    height: auto;
+}
+
+.calendar {
+    margin-top: 2rem;
+    width: 800px;
+    height: auto;
+}

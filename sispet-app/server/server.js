@@ -8,6 +8,8 @@ const animaisRoute = require("./routes/animaisRoute");
 const clientesRoute = require("./routes/clientesRoute");
 const usersRoute = require("./routes/usersRoute");
 
+const calendarRoute = require("./controllers/calendarController");
+
 const app = express();
 
 app.use(express.json());
@@ -18,6 +20,8 @@ connectDB();
 app.use("/api", usersRoute);
 app.use("/api", animaisRoute);
 app.use("/api", clientesRoute);
+
+app.use("/api/calendar", calendarRoute);
 
 //PORT = 5000;
 app.listen(process.env.PORT || 5000, () => {

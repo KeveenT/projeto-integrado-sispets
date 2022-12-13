@@ -12,6 +12,10 @@ import ListaClientes from './components/listaClientes';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 
+import Modal from 'react-modal';
+import Calendar from './components/calendar';
+Modal.setAppElement('#root');
+
 function App() {
   let component
   switch(window.location.pathname) {
@@ -26,6 +30,9 @@ function App() {
       break
     case "/login":
       component = [<Login />]
+      break
+    case "/agenda":
+      component = [<Calendar />]
       break
     default:
       component = []
