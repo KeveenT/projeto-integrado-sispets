@@ -21,7 +21,7 @@ const EditarAnimal = ({ animal }) => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("http://localhost:5000/api/clientes", {
+        axios.get("https://projeto-integrado-sispets-prod.up.railway.app/api/clientes", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -37,7 +37,7 @@ const EditarAnimal = ({ animal }) => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.put(`http://localhost:5000/api/animal/update/${id}`, JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente: clienteAnimal, id: animalId}), {
+        axios.put(`https://projeto-integrado-sispets-prod.up.railway.app/api/animal/update/${id}`, JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente: clienteAnimal, id: animalId}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

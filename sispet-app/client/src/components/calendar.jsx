@@ -27,7 +27,7 @@ export default function() {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("http://localhost:5000/api/calendar/create-event", data.event, {
+        await axios.post("https://projeto-integrado-sispets-prod.up.railway.app/api/calendar/create-event", data.event, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -39,7 +39,7 @@ export default function() {
             console.log("Você precisa fazer log in")
             return
         }
-        const response = await axios.get(`http://localhost:5000/api/calendar/get-events?start=`+moment(data.start).toISOString()+"&end="+moment(data.end).toISOString, {
+        const response = await axios.get(`https://projeto-integrado-sispets-prod.up.railway.app/api/calendar/get-events?start=`+moment(data.start).toISOString()+"&end="+moment(data.end).toISOString, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
