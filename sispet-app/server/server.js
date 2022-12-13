@@ -24,6 +24,7 @@ app.use("/api", clientesRoute);
 app.use("/api/calendar", calendarRoute);
 
 //PORT = 5000;
-app.listen(process.env.PORT || 5000, () => {
-    console.log("Servidor está rodando")
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`Servidor está rodando na porta:${port}`)
 });
