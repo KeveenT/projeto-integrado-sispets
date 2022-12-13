@@ -19,7 +19,7 @@ const EditarCliente = ({ cliente }) => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.put(`http://localhost:5000/api/cliente/update/${id}`, JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email: emailCliente, id: clienteId}), {
+        axios.put(`https://sispet-app.adaptable.app/api/cliente/update/${id}`, JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email: emailCliente, id: clienteId}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
