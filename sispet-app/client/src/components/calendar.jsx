@@ -1,35 +1,54 @@
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Fragment } from "react";
 import AddEventModal from "./addEventModal";
 import axios from "axios";
 import moment from 'moment';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function() {
     const [modalOpen, setModalOpen] = useState(false);
     const [events, setEvents] = useState([]);
     const calendarRef = useRef(null);
 
+    const { user } = useAuthContext()
+
     const onEventAdded = (event) => {
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
             start: moment(event.start).toDate(),
             end: moment(event.end).toDate(),
-            title: event.title,
+            title: event.title
         });
     };
 
     async function handleEventAdd(data) {
-        await axios.post("/api/calendar/create-event", data.event);
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        await axios.post("http://localhost:5000/api/calendar/create-event", data.event, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+            });
     };
 
     async function handleDatesSet(data) {
-        const response = await axios.get("/api/calendar/get-events?start="+moment(data.start).toISOString()+"&end="+moment(data.end).toISOString);
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        const response = await axios.get(`http://localhost:5000/api/calendar/get-events?start=`+moment(data.start).toISOString()+"&end="+moment(data.end).toISOString, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+            });
         setEvents(response.data);
     };
 
     return (
-        <section>
+        <Fragment> 
             <div className="agendamento">
                 <button class="btn btn-primary" onClick={() => setModalOpen(true)}>Agendar</button>
             </div>
@@ -37,7 +56,7 @@ export default function() {
                     <FullCalendar
                         ref={calendarRef}
                         events={events}
-                        plugins={[ dayGridPlugin ]}
+                        plugins={[dayGridPlugin]}
                         initialView="dayGridMonth"
                         locale="pt-br"
                         eventAdd={(event) => handleEventAdd(event)}
@@ -49,6 +68,6 @@ export default function() {
                 onClose={() => setModalOpen(false)} 
                 onEventAdded={(event) => onEventAdded(event)}
             />
-        </section>
+        </Fragment>
     )
 }

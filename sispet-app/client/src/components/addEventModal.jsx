@@ -25,12 +25,12 @@ export default function ({isOpen, onClose, onEventAdded}) {
 
                 <div>
                     <label>Data de Início</label>
-                    <Datetime value={start} onChange={date => setStart(date)}/>
+                    <Datetime value={start} onChange={date => setStart(date._d)}/>
                 </div>
 
                 <div>
                     <label>Data de Término</label>
-                    <Datetime value={end} onChange={date => setEnd(date)}/>
+                    <Datetime value={end} onChange={date => setEnd(date._d)}/>
                 </div>
 
                 <button class="btn btn-primary">Agendar</button>

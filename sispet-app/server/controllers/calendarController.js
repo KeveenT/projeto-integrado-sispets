@@ -1,6 +1,11 @@
-const router = require("express").Router();
+const express = require("express");
 const Event = require("../models/eventModel");
 const moment = require("moment");
+const requireAuth = require('../middleware/requireAuth');
+
+const router = express.Router();
+
+router.use(requireAuth);
 
 router.post("/create-event", async (req, res) => {
     const event = Event(req.body);
@@ -8,12 +13,12 @@ router.post("/create-event", async (req, res) => {
     res.sendStatus(201);
 });
 
-router.get("/get-event", async (req, res) => {
+router.get("/get-events", async (req, res) => {
     const events = await Event.find({
         start: {$gte: moment(req.query.start).toDate()}, 
         end: {$lte:  moment(req.query.start).toDate()},
     });
-    res.send(events);
+    res.json(events);
 });
 
 module.exports = router;
