@@ -15,7 +15,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.delete(`https://projeto-integrado-sispets-prod.up.railway.app/api/cliente/delete/${id}`, {
+        axios.delete(`http://localhost:5000/api/cliente/delete/${id}`, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -28,7 +28,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("https://projeto-integrado-sispets-prod.up.railway.app/api/clientes", {
+        axios.get("http://localhost:5000/api/clientes", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }

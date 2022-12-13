@@ -19,7 +19,7 @@ const CadastroCliente = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("https://projeto-integrado-sispets-prod.up.railway.app/api/cliente/new", JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email:emailCliente}), {
+        await axios.post("http://localhost:5000/api/cliente/new", JSON.stringify({nome: nomeCliente, cpf: cpfCliente, cep: cepCliente, endereço: endereçoCliente, telefone: telefoneCliente, email:emailCliente}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

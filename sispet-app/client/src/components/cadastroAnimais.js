@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const url = "https://projeto-integrado-sispets-prod.up.railway.app/"
+const url = "http://localhost:5000/"
 
 const CadastroAnimal = () => {
 
@@ -17,7 +17,7 @@ const CadastroAnimal = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("https://projeto-integrado-sispets-prod.up.railway.app/api/clientes", {
+        axios.get("http://localhost:5000/api/clientes", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -40,7 +40,7 @@ const CadastroAnimal = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("https://projeto-integrado-sispets-prod.up.railway.app/api/animal/new", JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente:clienteAnimal}), {
+        await axios.post("http://localhost:5000/api/animal/new", JSON.stringify({nome: nomeAnimal, especie: especieAnimal, idade: idadeAnimal, raça: raçaAnimal, sexo: sexoAnimal, cliente:clienteAnimal}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
