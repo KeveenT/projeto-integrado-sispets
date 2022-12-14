@@ -5,7 +5,7 @@ const Clientes = require("../models/clientesModel");
 const animalSchema = new Schema({
     nome: {
         type: String,
-        required: false,
+        required: true,
     },
     especie: {
         type: String,
@@ -27,7 +27,7 @@ const animalSchema = new Schema({
         //type: mongoose.Schema.Types.String,
         //ref: "Clientes",
         type: String,
-        required: false,
+        required: true,
     },
     user_id: {
         type: String,
