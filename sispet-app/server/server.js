@@ -6,6 +6,7 @@ require('dotenv').config();
 const connectDB = require("./database");
 const animaisRoute = require("./routes/animaisRoute");
 const clientesRoute = require("./routes/clientesRoute");
+const fornecedoresRoute = require("./routes/fornecedoresRoute");
 const usersRoute = require("./routes/usersRoute");
 
 const calendarRoute = require("./controllers/calendarController");
@@ -20,6 +21,7 @@ connectDB();
 app.use("/api", usersRoute);
 app.use("/api", animaisRoute);
 app.use("/api", clientesRoute);
+app.use("/api", fornecedoresRoute);
 
 app.use("/api/calendar", calendarRoute);
 

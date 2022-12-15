@@ -1,5 +1,4 @@
 const Fornecedores = require("../models/fornecedoresModel");
-const mongoose = require("mongoose");
 
 const getFornecedores = async (req, res) => {
     try {
@@ -14,15 +13,15 @@ const getFornecedores = async (req, res) => {
 const createFornecedor = async (req, res) => {
     try {
         const nome = req.body.nome
-        const cnpj = req.body.cpf
+        const cnpj = req.body.cnpj
         const cep = req.body.cep
         const endereço = req.body.endereço
         const telefone = req.body.telefone
-        const fornecimento = req.body.email
+        const fornecimento = req.body.fornecimento
         const user_id = req.user._id
         const newFornecedor = new Fornecedores({nome, cnpj, cep, endereço, telefone, fornecimento, user_id});
         await newFornecedor.save();
-        res.json(fornecedor);
+        res.json(newFornecedor);
     } catch (err) {
         console.error(err.message);
     }

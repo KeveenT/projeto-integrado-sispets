@@ -10,7 +10,7 @@ const CadastroFornecedor = () => {
     const [cepFornecedor, setCEP] = useState(0);
     const [endereçoFornecedor, setEndereço] = useState("");
     const [telefoneFornecedor, setTelefone] = useState(0);
-    const [fornecimentoFornecedor, setEmail] = useState("");
+    const [fornecimentoFornecedor, setFornecimento] = useState("");
 
     const { user } = useAuthContext()
 
@@ -19,7 +19,7 @@ const CadastroFornecedor = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("https://sispet-app.adaptable.app/api/fornecedor/new", JSON.stringify({nome: nomeFornecedor, cnpj: cnpjFornecedor, cep: cepFornecedor, endereço: endereçoFornecedor, telefone: telefoneFornecedor, fornecimento:fornecimentoFornecedor}), {
+        await axios.post("http://localhost:5000/api/fornecedor/new", JSON.stringify({nome: nomeFornecedor, cnpj: cnpjFornecedor, cep: cepFornecedor, endereço: endereçoFornecedor, telefone: telefoneFornecedor, fornecimento:fornecimentoFornecedor}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const CadastroFornecedor = () => {
                     <label>Telefone</label>
                     <input type="number" onChange={(event) => {setTelefone(event.target.value)}}/>
                     <label>Fornecimento</label>
-                    <input type="text" onChange={(event) => {setEmail(event.target.value)}}/>
+                    <input type="text" onChange={(event) => {setFornecimento(event.target.value)}}/>
                 </div>
 
                 <div class="modal-footer">

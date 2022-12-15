@@ -9,7 +9,7 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.put("/fornecedor/update/:id", updateFornecedor);
-router.get("/fornecedors", getFornecedores);
+router.get("/fornecedores", getFornecedores);
 router.post("/fornecedor/new", createFornecedor);
 router.delete("/fornecedor/delete/:id", deleteFornecedor);
 
