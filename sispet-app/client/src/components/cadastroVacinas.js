@@ -15,7 +15,7 @@ const CadastroVacina = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("http://localhost:5000/api/fornecedores", {
+        axios.get("https://sispet-app.adaptable.app/api/fornecedores", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -37,7 +37,7 @@ const CadastroVacina = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("http://localhost:5000/api/vacina/new", JSON.stringify({nome: nomeVacina, doses: dosesVacina, lote: loteVacina, fabricante: fabricanteVacina, fornecedor:fornecedorVacina}), {
+        await axios.post("https://sispet-app.adaptable.app/api/vacina/new", JSON.stringify({nome: nomeVacina, doses: dosesVacina, lote: loteVacina, fabricante: fabricanteVacina, fornecedor:fornecedorVacina}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

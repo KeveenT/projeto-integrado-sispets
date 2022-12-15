@@ -17,7 +17,7 @@ const EditarFuncionario = ({ funcionario }) => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.put(`http://localhost:5000/api/funcionario/update/${id}`, JSON.stringify({nome: nomeFuncionario, cpf: cpfFuncionario, cargo: cargoFuncionario, expediente: expedienteFuncionario, id: funcionarioId}), {
+        axios.put(`https://sispet-app.adaptable.app/api/funcionario/update/${id}`, JSON.stringify({nome: nomeFuncionario, cpf: cpfFuncionario, cargo: cargoFuncionario, expediente: expedienteFuncionario, id: funcionarioId}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

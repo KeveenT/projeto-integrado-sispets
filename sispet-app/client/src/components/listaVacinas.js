@@ -14,7 +14,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.delete(`http://localhost:5000/api/vacina/delete/${id}`, {
+        axios.delete(`https://sispet-app.adaptable.app/api/vacina/delete/${id}`, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -27,7 +27,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("http://localhost:5000/api/vacinas", {
+        axios.get("https://sispet-app.adaptable.app/api/vacinas", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }

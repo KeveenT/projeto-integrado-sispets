@@ -15,7 +15,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.delete(`http://localhost:5000/api/funcionario/delete/${id}`, {
+        axios.delete(`https://sispet-app.adaptable.app/api/funcionario/delete/${id}`, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -28,7 +28,7 @@ const Lista = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        axios.get("http://localhost:5000/api/funcionarios", {
+        axios.get("https://sispet-app.adaptable.app/api/funcionarios", {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }

@@ -17,7 +17,7 @@ const CadastroFuncionario = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("http://localhost:5000/api/funcionario/new", JSON.stringify({nome: nomeFuncionario, cpf: cpfFuncionario, cargo: cargoFuncionario, expediente: expedienteFuncionario}), {
+        await axios.post("https://sispet-app.adaptable.app/api/funcionario/new", JSON.stringify({nome: nomeFuncionario, cpf: cpfFuncionario, cargo: cargoFuncionario, expediente: expedienteFuncionario}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
