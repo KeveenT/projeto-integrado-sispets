@@ -7,6 +7,8 @@ const connectDB = require("./database");
 const animaisRoute = require("./routes/animaisRoute");
 const clientesRoute = require("./routes/clientesRoute");
 const fornecedoresRoute = require("./routes/fornecedoresRoute");
+const funcionariosRoute = require("./routes/funcionariosRoute");
+const vacinasRoute = require("./routes/vacinasRoute");
 const usersRoute = require("./routes/usersRoute");
 
 const calendarRoute = require("./controllers/calendarController");
@@ -22,7 +24,8 @@ app.use("/api", usersRoute);
 app.use("/api", animaisRoute);
 app.use("/api", clientesRoute);
 app.use("/api", fornecedoresRoute);
-
+app.use("/api", funcionariosRoute)
+app.use("/api", vacinasRoute);
 app.use("/api/calendar", calendarRoute);
 
 //PORT = 5000;

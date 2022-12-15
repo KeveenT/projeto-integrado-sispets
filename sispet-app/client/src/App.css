@@ -94,6 +94,18 @@ body {
     height: auto;
 }
 
+.display-funcionarios {
+    margin-top: 7rem;
+    width: 800px;
+    height: auto;
+}
+
+.display-vacinas {
+    margin-top: 7rem;
+    width: 800px;
+    height: auto;
+}
+
 .table td {
     vertical-align: middle;
 }

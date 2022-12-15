@@ -15,7 +15,7 @@ const funcionarioSchema = new Schema({
         required: false,
     },
     expediente: {
-        type: Date,
+        type: Number,
         required: false,
     }
 });

@@ -19,7 +19,7 @@ const CadastroFornecedor = () => {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("http://localhost:5000/api/fornecedor/new", JSON.stringify({nome: nomeFornecedor, cnpj: cnpjFornecedor, cep: cepFornecedor, endereço: endereçoFornecedor, telefone: telefoneFornecedor, fornecimento:fornecimentoFornecedor}), {
+        await axios.post("https://sispet-app.adaptable.app/api/fornecedor/new", JSON.stringify({nome: nomeFornecedor, cnpj: cnpjFornecedor, cep: cepFornecedor, endereço: endereçoFornecedor, telefone: telefoneFornecedor, fornecimento:fornecimentoFornecedor}), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

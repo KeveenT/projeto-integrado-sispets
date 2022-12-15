@@ -12,6 +12,10 @@ import ListaClientes from './components/listaClientes';
 
 import CadastroFornecedor from './components/cadastroFornecedores';
 import ListaFornecedor from './components/listaFornecedores';
+import CadastroFuncionario from './components/cadastroFuncionarios';
+import ListaFuncionario from './components/listaFuncionarios';
+import CadastroVacina from './components/cadastroVacinas';
+import ListaVacina from './components/listaVacinas';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -29,8 +33,14 @@ function App() {
     case "/clientes":
       component = [<CadastroCliente />, <ListaClientes />]
       break
+    case "/funcionarios":
+      component = [<CadastroFuncionario />, <ListaFuncionario />]
+      break
     case "/fornecedores":
       component = [<CadastroFornecedor />, <ListaFornecedor />]
+      break
+    case "/vacinas":
+      component = [<CadastroVacina />, <ListaVacina />]
       break
     case "/signup":
       component = [<Signup />]

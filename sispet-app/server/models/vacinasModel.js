@@ -11,7 +11,7 @@ const vacinaSchema = new Schema({
         required: false,
     },
     lote: {
-        type: Date,
+        type: Number,
         required: false,
     },
     fabricante: {
@@ -20,7 +20,7 @@ const vacinaSchema = new Schema({
     },
     fornecedor: {
         type: String,
-        required: false,
+        required: true,
     }
 });
 
