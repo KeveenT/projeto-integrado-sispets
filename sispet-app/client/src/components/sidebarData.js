@@ -10,14 +10,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 export const sidebarData = [
     {
-        title: "Animais",
-        icons: <PetsIcon />,
-        link: "/animais"
-    },
-    {
         title: "Clientes",
         icons: <PersonIcon />,
         link: "/clientes"
+    },
+    {
+        title: "Animais",
+        icons: <PetsIcon />,
+        link: "/animais"
     },
     {
         title: "Funcionários",
@@ -27,22 +27,22 @@ export const sidebarData = [
     {
         title: "Fornecedores",
         icons: <LocalShippingIcon />,
-        link: "/forncedores"
+        link: "/fornecedores"
+    },
+    {
+        title: "Vacinas",
+        icons: <DescriptionIcon />,
+        link: "/vacinas"
+    },
+    {
+        title: "Planos",
+        icons: <AddCircleIcon />,
+        link: "/planos"
     },
     {
         title: "Agendamentos",
         icons: <CalendarMonthIcon />,
         link: "/agenda"
-    },
-    {
-        title: "Planos",
-        icons: <DescriptionIcon />,
-        link: "/planos"
-    },
-    {
-        title: "Cadastros",
-        icons: <AddCircleIcon />,
-        link: "/cadastros"
     },
     {
         title: "Administração",

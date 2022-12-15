@@ -8,17 +8,24 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.post("/create-event", async (req, res) => {
-    const event = Event(req.body);
-    await event.save();
+    const start = req.body.start
+    const end = req.body.end
+    const title = req.body.title
+    const animal = req.body.animal
+    const user_id = req.user._id
+    const newEvent = new Event({start, end, title, animal, user_id});
+    await newEvent.save();
     res.sendStatus(201);
 });
 
 router.get("/get-events", async (req, res) => {
+    const user_id = req.user._id
     const events = await Event.find({
-        start: {$gte: moment(req.query.start).toDate()}, 
-        end: {$lte:  moment(req.query.start).toDate()},
+        start: { $gte: moment(req.query.start).toDate() }, 
+        end: { $lte:  moment(req.query.end).toDate() },
+        user_id
     });
-    res.json(events);
+    res.send(events);
 });
 
 module.exports = router;

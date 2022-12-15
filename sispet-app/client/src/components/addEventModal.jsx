@@ -1,11 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
+import { useAuthContext } from "../hooks/useAuthContext";
+import axios from "axios";
 
 export default function ({isOpen, onClose, onEventAdded}) {
     const [title, setTitle] = useState("");
     const [start, setStart] = useState(new Date());
     const [end, setEnd] = useState(new Date());
+
+    const { user } = useAuthContext()
+
+    const [listaAnimais, setListaAnimais] = useState([]);
+
+    useEffect(() => {
+        if (!user) {
+            console.log("Você precisa fazer log in")
+            return
+        }
+        axios.get("https://sispet-app.adaptable.app/api/animais", {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+            }).then((response) => {
+            setListaAnimais(response.data);
+        });
+    }, [user]);
+
+    const optionAnimais = listaAnimais.flat().map(({nome})=> nome);
+    const [animalEvent, setAnimal] = useState("");
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -13,7 +37,8 @@ export default function ({isOpen, onClose, onEventAdded}) {
         onEventAdded({
             title,
             start,
-            end
+            end,
+            animalEvent
         })
         onClose();
     }
@@ -22,15 +47,22 @@ export default function ({isOpen, onClose, onEventAdded}) {
         <Modal isOpen={isOpen} onRequestClose={onClose}>
             <form onSubmit={onSubmit}>
                 <input placeholder="Título" value={title} onChange={e => setTitle(e.target.value)}/>
+                
+                <select  class="form-select" id="animal" value={animalEvent} onChange={(event) => {setAnimal(event.target.value)}}>
+                    <option defaultValue> </option>
+                    {optionAnimais.map((animalEvent, i) => {
+                        return <option key={i} value={animalEvent} onSelect={() => setAnimal(animalEvent,i)}>{animalEvent}</option>
+                    })}
+                </select>
 
                 <div>
                     <label>Data de Início</label>
-                    <Datetime value={start} onChange={date => setStart(date._d)}/>
+                    <Datetime value={start} onChange={date => setStart(date)}/>
                 </div>
 
                 <div>
                     <label>Data de Término</label>
-                    <Datetime value={end} onChange={date => setEnd(date._d)}/>
+                    <Datetime value={end} onChange={date => setEnd(date)}/>
                 </div>
 
                 <button class="btn btn-primary">Agendar</button>

@@ -9,6 +9,10 @@ import CadastroAnimal from './components/cadastroAnimais';
 import ListaAnimais from './components/listaAnimais';
 import CadastroCliente from './components/cadastroClientes';
 import ListaClientes from './components/listaClientes';
+
+import CadastroFornecedor from './components/cadastroFornecedores';
+import ListaFornecedor from './components/listaFornecedores';
+
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 
@@ -24,6 +28,9 @@ function App() {
       break
     case "/clientes":
       component = [<CadastroCliente />, <ListaClientes />]
+      break
+    case "/fornecedores":
+      component = [<CadastroFornecedor />, <ListaFornecedor />]
       break
     case "/signup":
       component = [<Signup />]

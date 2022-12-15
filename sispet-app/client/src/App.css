@@ -88,6 +88,12 @@ body {
     height: auto;
 }
 
+.display-fornecedores {
+    margin-top: 7rem;
+    width: 800px;
+    height: auto;
+}
+
 .table td {
     vertical-align: middle;
 }

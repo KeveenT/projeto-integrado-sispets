@@ -1,6 +1,6 @@
+import React, { useRef, useState, Fragment } from "react";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import React, { useRef, useState, Fragment } from "react";
 import AddEventModal from "./addEventModal";
 import axios from "axios";
 import moment from 'moment';
@@ -14,11 +14,13 @@ export default function() {
     const { user } = useAuthContext()
 
     const onEventAdded = (event) => {
+        console.log(event.animal)
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
             start: moment(event.start).toDate(),
             end: moment(event.end).toDate(),
-            title: event.title
+            title: event.title,
+            animal: event.animal
         });
     };
 
@@ -56,9 +58,9 @@ export default function() {
                     <FullCalendar
                         ref={calendarRef}
                         events={events}
-                        plugins={[dayGridPlugin]}
+                        plugins={[ dayGridPlugin ]}
                         initialView="dayGridMonth"
-                        locale="pt-br"
+                        //locale="pt-br"
                         eventAdd={(event) => handleEventAdd(event)}
                         datesSet={(date) => handleDatesSet(date)}
                     />
