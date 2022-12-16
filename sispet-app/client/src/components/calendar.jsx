@@ -14,7 +14,7 @@ export default function() {
     const { user } = useAuthContext()
 
     const onEventAdded = (event) => {
-        console.log(event.animal)
+        console.log(event.start)
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
             start: moment(event.start).toDate(),
@@ -29,7 +29,7 @@ export default function() {
             console.log("Você precisa fazer log in")
             return
         }
-        await axios.post("http://localhost:5000/api/calendar/create-event", data.event, {
+        await axios.post("https://sispet-app.adaptable.app/api/calendar/create-event", data.event, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -41,12 +41,16 @@ export default function() {
             console.log("Você precisa fazer log in")
             return
         }
-        const response = await axios.get(`http://localhost:5000/api/calendar/get-events?start=`+moment(data.start).toISOString()+"&end="+moment(data.end).toISOString, {
+        console.log(data.start)
+        console.log(moment(data.start).toISOString())
+        const response = await axios.get(`https://sispet-app.adaptable.app/api/calendar/get-events?start=`+moment(data.start).toISOString()+`&end=`+moment(data.end).toISOString, {
             headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
             }
             });
-        setEvents(response.data);
+            setEvents(response.data);
     };
 
     return (
@@ -60,7 +64,7 @@ export default function() {
                         events={events}
                         plugins={[ dayGridPlugin ]}
                         initialView="dayGridMonth"
-                        //locale="pt-br"
+                        locale="pt-br"
                         eventAdd={(event) => handleEventAdd(event)}
                         datesSet={(date) => handleDatesSet(date)}
                     />

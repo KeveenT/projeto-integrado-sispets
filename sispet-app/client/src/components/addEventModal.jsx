@@ -46,14 +46,19 @@ export default function ({isOpen, onClose, onEventAdded}) {
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose}>
             <form onSubmit={onSubmit}>
-                <input placeholder="Título" value={title} onChange={e => setTitle(e.target.value)}/>
-                
+                <div>
+                <input placeholder="Serviço" value={title} onChange={e => setTitle(e.target.value)}/>
+                </div>
+
+                <div>
+                <label>Animal</label>
                 <select  class="form-select" id="animal" value={animalEvent} onChange={(event) => {setAnimal(event.target.value)}}>
                     <option defaultValue> </option>
                     {optionAnimais.map((animalEvent, i) => {
                         return <option key={i} value={animalEvent} onSelect={() => setAnimal(animalEvent,i)}>{animalEvent}</option>
                     })}
                 </select>
+                </div>
 
                 <div>
                     <label>Data de Início</label>
